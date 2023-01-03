@@ -1,6 +1,6 @@
 import random
+from random_word import RandomWords
 
-word_list = ["iggybiggyboogy", "camel", "monkey"]
 
 stages = ['''
   +---+
@@ -59,7 +59,9 @@ stages = ['''
 =========
 ''']
 
-chosen_word = random.choice(word_list)
+
+word_generator =  RandomWords()
+chosen_word = word_generator.get_random_word()
 
 display = []
 len = len(chosen_word)
@@ -82,7 +84,7 @@ while tries > 0:
     if chosen_word[i] == guess:
       display[i] = chosen_word[i]
       is_match = True
-      print("Correct")
+      
       
     
   # win condition
@@ -90,17 +92,19 @@ while tries > 0:
     print("You win")
     break
     print(display)  
+    print(f"The word was {chosen_word}, you guessed correctly!")
 
   # wrong try
   if is_match == False:
     tries -= 1
-    print("Wrong")
+  
   else:
     print(display)
     
   # lose condition
   if tries == 0:
       print("You lose")
+      print(f"The word was {chosen_word}, you guessed wrong!")
       break
 
   print(stages[tries])
